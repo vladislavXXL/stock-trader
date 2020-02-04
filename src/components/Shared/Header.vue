@@ -1,9 +1,8 @@
 <template>
-    <app-server-status></app-server-status>
+    <h1>Server Status</h1>
 </template>
 
 <script>
-
 </script>
 
 <style scoped>
