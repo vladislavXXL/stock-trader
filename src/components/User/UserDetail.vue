@@ -3,8 +3,9 @@
         <h3>You may view the User Details here</h3>
         <p>Many Details</p>
         <p>User Name: {{ switchName() }}</p>
-        <button class="btn-success" @click="resetName">Reset Name</button>
-        <button class="btn-success" @click="resetFn()">Reset Name</button>
+        <p>User Age: {{ userAge }}</p>
+        <button class="btn-success" @click="resetName">Reset Name on Event</button>
+        <button class="btn-success" @click="resetFn()">Reset Name by Callback</button>
     </div>
 </template>
 
@@ -15,7 +16,8 @@
             name: {
                 type: String
             },
-            resetFn: Function
+            resetFn: Function,
+            userAge: Number
         },
         methods: {
             switchName() {
