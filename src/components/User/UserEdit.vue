@@ -4,21 +4,21 @@
         <p>Edit me!</p>
         <p>User Age: {{ userAge }}</p>
         <button @click="editAge">Edit age</button>
-        <button @click="resetAgeFn()">Reset Age</button>
     </div>
 </template>
 
 <script>
+    import {eventBus} from '../../../index';
+
     export default {
         name: "UserEdit",
         props: {
-            userAge: Number,
-            resetAgeFn: Function
+            userAge: Number
         },
         methods: {
             editAge() {
                 this.userAge = 30;
-                this.$emit('ageWasEdited', this.userAge)
+                eventBus.$emit('ageWasEdited', this.userAge);
             }
         }
     }

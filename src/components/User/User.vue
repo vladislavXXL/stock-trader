@@ -4,6 +4,7 @@
         <p>I'm an awesome User!</p>
         <button class="btn btn-success" @click="changeName">Change my Name</button>
         <p>Name is {{ name }}</p>
+        <p>Age is {{ age }}</p>
         <hr>
         <div class="row">
             <div class="col-xs-12 col-sm-6">
@@ -17,8 +18,6 @@
             <div class="col-xs-12 col-sm-6">
                 <app-user-edit
                         :userAge="age"
-                        @ageWasEdited="age = $event"
-                        :resetAgeFn="resetAge"
                 ></app-user-edit>
             </div>
         </div>
@@ -43,9 +42,6 @@
             },
             resetName() {
                 this.name = 'Max';
-            },
-            resetAge() {
-                this.age = 27;
             }
         },
         components: {
