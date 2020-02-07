@@ -1,31 +1,34 @@
 <template>
     <div class="container">
-        <app-header></app-header>
-        <hr>
         <div class="row">
-            <app-servers></app-servers>
-            <app-server-details></app-server-details>
+            <button class="btn btn-primary mr-2" @click="selected = 'appBlue'">Load Blue Template</button>
+            <button class="btn btn-success mr-2" @click="selected = 'appGreen'">Load Green Template</button>
+            <button class="btn btn-danger mr-2" @click="selected = 'appRed'">Load Red Template</button>
         </div>
-        <hr>
-        <app-footer></app-footer>
+        <component :is="selected">
+            <h5 slot="text">Content</h5>
+            <p slot>Some text value</p>
+        </component>
     </div>
 </template>
 
 <script>
-    import Header from "./components/Shared/Header.vue";
-    import Footer from "./components/Shared/Footer.vue";
-    import Servers from "./components/Server/Servers.vue";
-    import ServerDetails from "./components/Server/ServerDetails.vue";
+    import Blue from "./components/Colored/Blue.vue";
+    import Green from "./components/Colored/Green.vue";
+    import Red from "./components/Colored/Red.vue";
 
     export default {
+        data() {
+            return {
+                selected: Blue
+            }
+        },
         components: {
-            'app-header': Header,
-            'app-servers': Servers,
-            'app-server-details': ServerDetails,
-            'app-footer': Footer
+            appBlue: Blue,
+            appGreen: Green,
+            appRed: Red
         }
     }
-
 </script>
 
 <style scoped>
