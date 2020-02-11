@@ -1,8 +1,10 @@
 <template>
     <div class="container">
-        <app-progress :quan="quantity"></app-progress>
-        <app-new></app-new>
-        <app-quotes></app-quotes>
+        <app-progress :quantity="quantity"></app-progress>
+        <app-new :quantity="quantity"></app-new>
+        <keep-alive>
+            <app-quotes></app-quotes>
+        </keep-alive>
         <app-info>Info: Click on Quote to delete it</app-info>
     </div>
 </template>
@@ -16,7 +18,7 @@
     export default {
         data() {
             return {
-                quantity: 10
+                quantity: 10,
             }
         },
         components: {

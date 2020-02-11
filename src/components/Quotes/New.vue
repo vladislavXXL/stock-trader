@@ -17,20 +17,40 @@
 
     export default {
         name: "New",
+        props: {
+            quantity: {
+                type: Number,
+                require: true
+            }
+        },
         data() {
             return {
-                quoteValue: ''
+                quoteValue: '',
+                count: 0
             }
         },
         methods: {
             addNewQuote() {
-                console.log(this.quoteValue);
-                eventBus.$emit('newQuoteEvent', this.quoteValue);
+                if (this.count === this.quantity) {
+                    window.alert('This is max value of quotes you can create')
+                } else {
+                    if (this.quoteValue !== '') {
+                        eventBus.$emit('newQuoteEvent', this.quoteValue);
+                        this.quoteValue = '';
+                        this.count++;
+                    } else {
+                        window.alert('Please enter the value')
+                    }
+                }
             }
+        },
+        created() {
+            eventBus.$on('reduceQuotesEvent', (count) => {
+                this.count -= 1;
+            });
         }
     }
 </script>
 
 <style scoped>
-
 </style>
