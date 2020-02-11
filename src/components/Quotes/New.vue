@@ -1,20 +1,20 @@
 <template>
     <div class="component">
-        <div class="row justify-content-md-center">
-            <div class="col-7">
-                <h4>Quote</h4>
-                <textarea cols="30" rows="3" class="form-control" v-model="quoteValue"></textarea>
-                <div class="row justify-content-md-center mt-3">
-                    <button class="btn btn-info" @click="addNewQuote">Add Quote</button>
+        <div class="row">
+            <form class="d-flex justify-content-center">
+                <div class="col-7 form-group">
+                    <label>Quote</label>
+                    <textarea cols="150" rows="3" class="form-control" v-model="quoteValue"></textarea>
+                    <div class="row justify-content-md-center mt-3">
+                        <button class="btn btn-info" @click.prevent="addNewQuote">Add Quote</button>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 </template>
 
 <script>
-    import {eventBus} from '../../../index';
-
     export default {
         name: "New",
         props: {
@@ -26,29 +26,19 @@
         data() {
             return {
                 quoteValue: '',
-                count: 0
             }
         },
         methods: {
             addNewQuote() {
-                if (this.count === this.quantity) {
-                    window.alert('This is max value of quotes you can create')
+                if (this.quoteValue !== '') {
+                    this.$emit('newQuoteEvent', this.quoteValue);
+                    this.quoteValue = '';
+                    this.count++;
                 } else {
-                    if (this.quoteValue !== '') {
-                        eventBus.$emit('newQuoteEvent', this.quoteValue);
-                        this.quoteValue = '';
-                        this.count++;
-                    } else {
-                        window.alert('Please enter the value')
-                    }
+                    window.alert('Please enter the value')
                 }
             }
         },
-        created() {
-            eventBus.$on('reduceQuotesEvent', (count) => {
-                this.count -= 1;
-            });
-        }
     }
 </script>
 

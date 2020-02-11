@@ -8,16 +8,17 @@
 </template>
 
 <script>
-    import {eventBus} from "../../../index";
-
     export default {
         name: "Progress",
         props: {
             quantity: {
                 type: Number,
-                require: true,
-                default: 10
+                require: true
             },
+            count: {
+                type: Number,
+                require: true
+            }
         },
         data() {
             return {
@@ -28,14 +29,6 @@
             width() {
                 return 'width:' + this.count / this.quantity * 100 + '%';
             }
-        },
-        created() {
-            eventBus.$on('newQuoteEvent', (quote) => {
-                this.count++;
-            });
-            eventBus.$on('reduceQuotesEvent', (count) => {
-                this.count -= 1;
-            });
         }
     }
 </script>

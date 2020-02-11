@@ -1,57 +1,43 @@
 <template>
     <div class="component">
         <div class="row d-flex flex-row">
-            <div class="col-3 shadow mb-5 mr-3 rounded quote-wrap text-break"
-                 v-if="quotes.length !== 0"
-                 v-for="(quote, index) in quotes"
-                 @click="removeQuote(index)"
+            <app-quote :quotes="quotes"
+                       v-for="(quote, index) in quotes"
+                       @click.native="removeQuote(index)"
             >
                 {{ quote }}
-            </div>
+            </app-quote>
         </div>
     </div>
 </template>
 
 <script>
-    import {eventBus} from '../../../index';
+    import Quote from "./Quote.vue";
 
     export default {
         name: "Quotes",
         props: {
-            quote: {
-                type: String
+            quotes: {
+                type: Array,
+                require: true
             }
         },
         data() {
             return {
-                quotes: []
+
             }
         },
         methods: {
             removeQuote(index) {
-                this.quotes.splice(index, 1);
-                eventBus.$emit('reduceQuotesEvent', 1);
+                this.$emit('reduceQuotesEvent', index);
             }
         },
-        created() {
-            eventBus.$on('newQuoteEvent', (quote) => {
-                this.quotes.push(quote);
-            });
+        components: {
+            appQuote: Quote
         }
     }
 </script>
 
 <style scoped>
-    .quote-wrap {
-        padding: 20px 10px 20px 10px;
-        font-family: Bahnschrift, serif;
-        color: #635A5F;
-        font-size: 25px;
-        cursor: pointer;
-    }
 
-    .quote-wrap:hover {
-        background-color: #cc736e;
-        color: #fff;
-    }
 </style>
