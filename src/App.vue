@@ -1,31 +1,67 @@
 <template>
     <div class="container">
-        <app-header></app-header>
-        <hr>
         <div class="row">
-            <app-servers></app-servers>
-            <app-server-details></app-server-details>
+            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+                <h1>Built-in directives</h1>
+                <p v-text="'Some text'"></p>
+                <p v-html="'<strong>Some strong text</strong>'"></p>
+            </div>
         </div>
         <hr>
-        <app-footer></app-footer>
+        <div class="row">
+            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+                <h1>Custom directives</h1>
+                <p v-highlight:background.delayed="'red'">Color this</p>
+                <p v-highlight="'red'">Color this 2</p>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+                <h1>Custom local directives</h1>
+                <p v-local-highlight:background.delayed.blink="{mainColor: 'red', secondColor: 'green', delay: 500}">Local directive</p>
+            </div>
+        </div>
+
     </div>
 </template>
 
 <script>
-    import Header from "./components/Shared/Header.vue";
-    import Footer from "./components/Shared/Footer.vue";
-    import Servers from "./components/Server/Servers.vue";
-    import ServerDetails from "./components/Server/ServerDetails.vue";
-
     export default {
-        components: {
-            'app-header': Header,
-            'app-servers': Servers,
-            'app-server-details': ServerDetails,
-            'app-footer': Footer
+        directives: {
+            'local-highlight': {
+                bind(el, binding, vNode) {
+                    let delay = 0;
+                    if (binding.modifiers['delayed']) {
+                        delay = 3000;
+                    }
+                    if (binding.modifiers['blink']) {
+                        let mainColor = binding.value.mainColor;
+                        let secondColor = binding.value.secondColor;
+                        let currentColor = mainColor;
+                        setTimeout(() => {
+                            setInterval(() => {
+                                currentColor === secondColor ? currentColor = mainColor : currentColor = secondColor;
+                                if (binding.arg === 'background') {
+                                    el.style.backgroundColor = currentColor;
+                                } else {
+                                    el.style.color = currentColor;
+                                }
+                            }, binding.value.delay);
+                        }, delay);
+                    } else {
+                        setTimeout(() => {
+                            if (binding.arg === 'background') {
+                                el.style.backgroundColor = binding.value.mainColor;
+                            } else {
+                                el.style.color = binding.value.mainColor;
+                            }
+                        }, delay);
+                    }
+                }
+            }
         }
     }
-
 </script>
 
 <style scoped>
