@@ -1,33 +1,43 @@
 <template>
     <div class="container">
-        <app-header></app-header>
-        <hr>
         <div class="row">
-            <app-servers></app-servers>
-            <app-server-details></app-server-details>
+            <div class="col-xs-12 sol-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+                <h1>Animations</h1>
+                <hr>
+                <button class="btn btn-primary" @click="show = !show">Show Alert</button>
+                <br><br>
+                <transition name="fade">
+                    <div class="alert alert-info" v-if="show">This is some info</div>
+                </transition>
+            </div>
         </div>
-        <hr>
-        <app-footer></app-footer>
     </div>
 </template>
 
 <script>
-    import Header from "./components/Shared/Header.vue";
-    import Footer from "./components/Shared/Footer.vue";
-    import Servers from "./components/Server/Servers.vue";
-    import ServerDetails from "./components/Server/ServerDetails.vue";
-
     export default {
-        components: {
-            'app-header': Header,
-            'app-servers': Servers,
-            'app-server-details': ServerDetails,
-            'app-footer': Footer
+        data() {
+            return {
+                show: false
+            }
         }
     }
-
 </script>
 
-<style scoped>
+<style>
+    .fade-enter {
+        opacity: 0;
+    }
 
+    .fade-enter-active {
+        transition: opacity 1s;
+    }
+
+    .fade-leave {
+    }
+
+    .fade-leave-active {
+        transition: opacity 1s;
+        opacity: 0;
+    }
 </style>
