@@ -1,13 +1,20 @@
 <template>
     <div class="container">
         <app-header></app-header>
-        <component
-                :is="!isAnswered ? 'app-question' : 'app-answer'"
-                :question="getRandomQuiz()"
-                @isCorrect="isAnswered = $event"
-                @nextQuiz="isAnswered = $event"
+        <transition
+                mode="out-in"
+                appear
+                enter-active-class="animated zoomIn"
+                leave-active-class="animated zoomOut"
         >
-        </component>
+            <component
+                    :is="!isAnswered ? 'app-question' : 'app-answer'"
+                    :question="getRandomQuiz()"
+                    @isCorrect="isAnswered = $event"
+                    @nextQuiz="isAnswered = $event"
+            >
+            </component>
+        </transition>
     </div>
 </template>
 
