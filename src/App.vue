@@ -2,11 +2,14 @@
     <div class="container">
         <app-header></app-header>
         <transition
+                name="flip"
                 mode="out-in"
                 appear
-                enter-active-class="animated zoomIn"
-                leave-active-class="animated zoomOut"
         >
+            <!--
+                            enter-active-class="animated zoomIn"
+                            leave-active-class="animated zoomOut"
+            -->
             <component
                     :is="!isAnswered ? 'app-question' : 'app-answer'"
                     :question="getRandomQuiz()"
@@ -65,5 +68,37 @@
 </script>
 
 <style scoped>
+    .flip-enter {
+       /*transform: rotateY(0deg);*/
+    }
 
+    .flip-enter-active {
+        animation: flip-in 0.5s ease-out forwards;
+    }
+
+    .flip-leave {
+        /*transform: rotateY(0deg);*/
+    }
+
+    .flip-leave-active {
+        animation: flip-out .5s ease-out forwards;
+    }
+
+    @keyframes flip-out {
+        from {
+            transform: rotateY(0deg);
+        }
+        to {
+            transform: rotateY(90deg);
+        }
+    }
+
+    @keyframes flip-in {
+        from {
+            transform: rotateY(90deg);
+        }
+        to {
+            transform: rotateY(0deg);
+        }
+    }
 </style>
