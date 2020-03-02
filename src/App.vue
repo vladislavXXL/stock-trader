@@ -36,19 +36,29 @@
                     email: ''
                 },
                 users: [],
+                resource: {}
             };
         },
         methods: {
             submit() {
-                this.$http.post('', this.user)
+/*
+                // using with http requests
+                this.$http.post('data.json', this.user)
                     .then(response => {
                         console.log(response);
                     }, error => {
                         console.log(error);
                     });
+*/
+/*
+                // using with resource request
+                this.resource.save({}, this.user);
+*/
+                // using with resource with parameters and alternative setting
+                this.resource.saveAlt(this.user);
             },
             fetchData() {
-                this.$http.get('')
+                this.$http.get('data.json')
                     .then(response => {
                         return response.json();
                     })
@@ -60,8 +70,13 @@
                         this.users = resultArray;
                     });
             }
+        },
+        created() {
+            const customActions = {
+                saveAlt: {method: 'POST', url: 'alternative.json'}
+            };
+            this.resource = this.$resource('data.json', {}, customActions);
         }
-
     }
 
 </script>
