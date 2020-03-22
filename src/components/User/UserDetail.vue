@@ -1,10 +1,23 @@
 <template>
-    <h3>Some User Details</h3>
+    <div>
+        <h3>Some User Details</h3>
+        <p>User ID: {{ id }}</p>
+    </div>
 </template>
 
 <script>
     export default {
-        name: "UserDetail"
+        name: "UserDetail",
+        data() {
+            return {
+                id: this.$route.params.id
+            }
+        },
+        watch: {
+            '$route'(to, from) {
+                this.id = to.params.id;
+            }
+        }
     }
 </script>
 

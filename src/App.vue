@@ -15,7 +15,7 @@
     import Header from './components/Shared/Header.vue';
 
     export default {
-        name: "Home",
+        name: "App",
         data() {
             return {
 
