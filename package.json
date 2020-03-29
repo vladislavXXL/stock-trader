@@ -9,15 +9,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vladislavXXL/health-front-vuejs.git"
+    "url": "git+https://github.com/vladislavXXL/stock-trader.git"
   },
   "keywords": [],
   "author": "vitya39@gmail.com",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/vladislavXXL/health-front-vuejs/issues"
+    "url": "https://github.com/vladislavXXL/stock-trader/issues"
   },
-  "homepage": "https://github.com/vladislavXXL/health-front-vuejs#readme",
+  "homepage": "https://github.com/vladislavXXL/stock-trader#readme",
   "devDependencies": {
     "@babel/cli": "^7.7.7",
     "@babel/core": "^7.7.7",

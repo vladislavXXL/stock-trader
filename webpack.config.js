@@ -9,10 +9,11 @@ let conf = {
     entry: join(__dirname, 'index.js'),
     output: {
         path: join(__dirname, './dist'),
-        filename: 'main.js',
-        //publicPath: 'dist/'
+        filename: 'main.js'
     },
     devServer: {
+        contentBase: join(__dirname, './dist'),
+        // publicPath: './',
         overlay: true,
         port: 8080,
         hot: true,
@@ -56,8 +57,7 @@ let conf = {
         new HTMLWebpackPlugin({
             showErrors: true,
             //cache: true,
-            //title: 'Health project',
-            //favicon: path(__dirname, 'logo.png'),
+            //title: 'Stock Trader',
             template: join(__dirname, 'index.html')
         })
     ],
