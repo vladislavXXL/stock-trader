@@ -30,6 +30,14 @@
                 // id: this.$route.params.id
             }
         },
+        beforeRouteEnter(to, from, next) {
+            console.log('Inside component, beforeRouteEnter');
+            if (true) {
+                next();
+            } else {
+                next(false);
+            }
+        }
         /*
                 watch: {
                     '$route'(to, from) {
