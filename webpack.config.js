@@ -58,6 +58,7 @@ let conf = {
             showErrors: true,
             //cache: true,
             //title: 'Stock Trader',
+            //favicon: join(__dirname, './src/static/favicon.ico'),
             template: join(__dirname, 'index.html')
         })
     ],
