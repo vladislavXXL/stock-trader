@@ -5,24 +5,38 @@
         <router-link
                 tag="button"
                 class="btn btn-primary"
-                :to="{ name: 'userEdit', params: { id: $route.params.id }, query: { locale: 'en', q: 100 }}"
-        >Edit User</router-link>
+                :to="link"
+        >Edit User
+        </router-link>
     </div>
 </template>
 
 <script>
     export default {
         name: "UserDetail",
-/*        data() {
+        data() {
             return {
-                id: this.$route.params.id
+                link: {
+                    name: 'userEdit',
+                    params: {
+                        id: this.$route.params.id
+                    },
+                    query: {
+                        locale: 'en',
+                        q: 100
+                    },
+                    hash: '#data'
+                }
+                // id: this.$route.params.id
             }
         },
-        watch: {
-            '$route'(to, from) {
-                this.id = to.params.id;
-            }
-        }*/
+        /*
+                watch: {
+                    '$route'(to, from) {
+                        this.id = to.params.id;
+                    }
+                }
+        */
     }
 </script>
 
