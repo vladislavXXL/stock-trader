@@ -5,10 +5,17 @@
 <script>
     export default {
         name: "Result",
+/*
         props: {
             counter: {
                 type: Number,
                 required: true
+            }
+        }
+*/
+        computed: {
+            counter() {
+                return this.$store.state.counter;
             }
         }
     }
