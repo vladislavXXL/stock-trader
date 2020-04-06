@@ -4,15 +4,7 @@
 
 <script>
     export default {
-        name: "Result",
-/*
-        props: {
-            counter: {
-                type: Number,
-                required: true
-            }
-        }
-*/
+        name: "AnotherResult",
         computed: {
             counter() {
                 return this.$store.getters.doubleCounter;

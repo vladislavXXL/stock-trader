@@ -4,8 +4,10 @@
             <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
                 <h1>Vuex</h1>
                 <app-result></app-result>
+                <app-another-result></app-another-result>
                 <hr>
                 <app-counter></app-counter>
+
             </div>
         </div>
     </div>
@@ -14,10 +16,12 @@
 <script>
     import Counter from "./elements/Counter.vue";
     import Result from "./elements/Result.vue";
+    import AnotherResult from "./elements/AnotherResult.vue";
     export default {
         components: {
             appCounter: Counter,
-            appResult: Result
+            appResult: Result,
+            appAnotherResult: AnotherResult
         }
     }
 
