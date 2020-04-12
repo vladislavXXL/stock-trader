@@ -22,15 +22,16 @@
     import Result from "./elements/Result.vue";
     import AnotherResult from "./elements/AnotherResult.vue";
     import AnotherCounter from "./elements/AnotherCounter.vue";
+    import * as types from './store/types';
 
     export default {
         computed: {
             value: {
                 get() {
-                    return this.$store.getters.value;
+                    return this.$store.getters[types.GET_VALUE];
                 },
                 set(value) {
-                    this.$store.dispatch('updateValue', value);
+                    this.$store.dispatch(types.UPDATE_VALUE, value);
                 }
             }
         },
